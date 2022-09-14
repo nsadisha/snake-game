@@ -39,7 +39,7 @@ body {
     left: 10%;
     grid-row: var(--row);
     grid-column: var(--col);
-    animation: blink 0.5s infinite;
+    animation: blink 0.3s alternate infinite ease-in-out;
 }
 @keyframes blink {
     from{
