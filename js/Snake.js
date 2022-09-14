@@ -4,14 +4,13 @@ export default class Snake {
     #length = 1
     #speed
     #snakeHead
+    #snakeTail
     direction = 'right'
-    moving = null
     
     constructor(speed){
         this.#speed = speed
         this.#snakeHead = new SnakeCell(this.#length)
-
-        this.moving = setInterval(this.move.bind(this), speed)
+        this.#snakeTail = this.#snakeHead
     }
 
     getSnake(){
@@ -33,7 +32,21 @@ export default class Snake {
         }
     }
 
+    getHeadPosition(){
+        return {
+            x: this.#snakeHead.cellX,
+            y: this.#snakeHead.cellY
+        }
+    }
+
     setDirection(direction){
         this.direction = direction
+    }
+
+    updateLength(){
+        var cell = new SnakeCell(this.#length)
+        this.#snakeTail.next = cell
+        cell.previous = this.#snakeTail
+        this.#snakeTail = cell
     }
 }
