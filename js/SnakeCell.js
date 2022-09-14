@@ -9,7 +9,10 @@ export default class SnakeCell {
 
     constructor(id){
         this.#cellId = id
-        this.#cell = `<div class="snake-cell move" id="snake-cell-${id}" style="--cell-x: ${this.cellX}; --cell-y: ${this.cellY};"></div>`
+        this.#cell = document.createElement('div')
+        this.#cell.classList.add('snake-cell', 'move')
+        this.#cell.id = `snake-cell-${id}`
+        this.#cell.setAttribute('style', `--cell-x: ${this.cellX}; --cell-y: ${this.cellY};`)
     }
 
     getCell(){
@@ -17,8 +20,11 @@ export default class SnakeCell {
     }
 
     updatePosition(x, y){
+        document.getElementById('snake-cell-'+this.#cellId).setAttribute('style', `--cell-x: ${x}; --cell-y: ${y};`)
+        if(this.next != null){
+            this.next.updatePosition(this.cellX, this.cellY)
+        }
         this.cellX = x
         this.cellY = y
-        document.getElementById('snake-cell-'+this.#cellId).setAttribute('style', `--cell-x: ${x}; --cell-y: ${y};`)
     }
 }
