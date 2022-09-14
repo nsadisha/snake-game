@@ -5,7 +5,7 @@ export default class SnakeGame {
     #game = document.getElementById('snake-game')
     #xCount = 100
     #yCount = 60
-    #speed = 500
+    #speed = 300
     #snake = new Snake(this.#speed)
     constructor(){
     }
@@ -32,13 +32,17 @@ export default class SnakeGame {
     listenForInputs(){
         window.addEventListener('keyup', e => {
             if(e.key == 'ArrowUp'){
-                console.log('up');
+                if(this.#snake.direction != 'down')
+                this.#snake.setDirection('up')
             }else if(e.key == 'ArrowLeft'){
-                console.log('left');
+                if(this.#snake.direction != 'right')
+                this.#snake.setDirection('left')
             }else if(e.key == 'ArrowRight'){
-                console.log('right');
+                if(this.#snake.direction != 'left')
+                this.#snake.setDirection('right')
             }else if(e.key == 'ArrowDown'){
-                console.log('down');
+                if(this.#snake.direction != 'up')
+                this.#snake.setDirection('down')
             }
         })
     }
