@@ -2,14 +2,12 @@ import SnakeCell from "./SnakeCell.js"
 
 export default class Snake {
     #length = 1
-    #speed
     #snakeHead
     #snakeTail
     direction = 'right'
     
     constructor(speed){
-        this.#speed = speed
-        this.#snakeHead = new SnakeCell(this.#length)
+        this.#snakeHead = new SnakeCell(this.#length, 1, 2)
         this.#snakeTail = this.#snakeHead
     }
 
@@ -43,10 +41,12 @@ export default class Snake {
         this.direction = direction
     }
 
-    updateLength(){
-        var cell = new SnakeCell(this.#length)
+    getNewSnakeCell(){
+        this.#length += 1
+        var cell = new SnakeCell(this.#length, this.#snakeTail.cellX, this.#snakeTail.cellY)
         this.#snakeTail.next = cell
         cell.previous = this.#snakeTail
         this.#snakeTail = cell
+        return cell.getCell()
     }
 }
