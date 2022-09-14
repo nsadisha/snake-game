@@ -1,24 +1,30 @@
 import Snake from "./Snake.js"
+import Food from "./Food.js"
 
 export default class SnakeGame {
     #marks = 0
     #game = document.getElementById('snake-game')
     #xCount = 100
     #yCount = 60
-    #speed = 300
-    #snake = new Snake(this.#speed)
+    #speed = 150
+    #snake
+    #currentFood
+
+    //intervals
     #moveSnake
     #gameCheck
 
     constructor(){
         this.listenForInputs()
-        this.#moveSnake = setInterval(this.#snake.move.bind(this.#snake), this.#speed)
-        this.#gameCheck = setInterval(this.checkSnake.bind(this), 50)
     }
-
+    
     start(){
         this.addSnake()
         this.addFood()
+
+        //setting intervals
+        this.#moveSnake = setInterval(this.#snake.move.bind(this.#snake), this.#speed)
+        this.#gameCheck = setInterval(this.checkSnake.bind(this), this.#speed)
     }
 
     gameOver(){
@@ -28,20 +34,47 @@ export default class SnakeGame {
     }
 
     addSnake(){
+        this.#snake = new Snake()
         this.#game.appendChild(this.#snake.getSnake())
     }
 
     checkSnake(){
         var position = this.#snake.getHeadPosition()
-        if(position.x < 0 || position.x >this.#xCount || position.y < 0 || position.y > this.#yCount){
+        if(position.x <= 0 || position.x >= this.#xCount || position.y <= 0 || position.y >= this.#yCount){
             this.gameOver()
+        }
+
+        this.checkFoodStatus()
+    }
+
+    checkFoodStatus(){
+        var snakePosition = this.#snake.getHeadPosition()
+        var foodPosition = this.#currentFood.getPosition()
+
+        if(snakePosition.x == foodPosition.x && snakePosition.y == foodPosition.y){
+            this.#marks += 1
+            console.log(this.#marks);
+            this.#game.appendChild(this.#snake.getNewSnakeCell())
+            this.removeCurrentFoodAndAddNew()
         }
     }
 
     addFood(){
-        var x = Math.floor(Math.random() * this.#xCount)
-        var y = Math.floor(Math.random() * this.#yCount)
-        this.#game.innerHTML += `<div class="food" style="--row: ${x}; --col: ${y};"></div>`
+        var pos = this.getRandomPosition()
+        this.#currentFood = new Food(pos.x, pos.y)
+        this.#game.appendChild(this.#currentFood.getFood())
+    }
+
+    removeCurrentFoodAndAddNew(){
+        this.#currentFood.remove()
+        this.addFood()
+    }
+
+    getRandomPosition(){
+        return{
+            x: Math.floor(Math.random() * this.#xCount),
+            y: Math.floor(Math.random() * this.#yCount)
+        }
     }
     listenForInputs(){
         window.addEventListener('keyup', e => {
