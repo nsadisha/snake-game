@@ -1,14 +1,16 @@
 export default class SnakeCell {
-    cellX = 1
-    cellY = 2
+    cellX
+    cellY
     #cell
     #cellId
 
     next = null
     previous = null
 
-    constructor(id){
+    constructor(id, x, y){
         this.#cellId = id
+        this.cellX = x
+        this.cellY = y
         this.#cell = document.createElement('div')
         this.#cell.classList.add('snake-cell', 'move')
         this.#cell.id = `snake-cell-${id}`
