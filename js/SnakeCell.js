@@ -19,6 +19,6 @@ export default class SnakeCell {
     updatePosition(x, y){
         this.cellX = x
         this.cellY = y
-        document.getElementById('snake-cell-'+this.#cellId).setAttribute('style', `"--cell-x: ${x}; --cell-y: ${x};"`)
+        document.getElementById('snake-cell-'+this.#cellId).setAttribute('style', `--cell-x: ${x}; --cell-y: ${y};`)
     }
 }
