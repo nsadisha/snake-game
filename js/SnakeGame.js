@@ -7,21 +7,35 @@ export default class SnakeGame {
     #yCount = 60
     #speed = 300
     #snake = new Snake(this.#speed)
+    #moveSnake
+    #gameCheck
+
     constructor(){
+        this.listenForInputs()
+        this.#moveSnake = setInterval(this.#snake.move.bind(this.#snake), this.#speed)
+        this.#gameCheck = setInterval(this.checkSnake.bind(this), 50)
     }
 
     start(){
         this.addSnake()
         this.addFood()
-        this.listenForInputs()
     }
 
-    stop(){
-        this.#game.innerHTML = ""
+    gameOver(){
+        console.log('Game Over');
+        clearInterval(this.#moveSnake)
+        clearInterval(this.#gameCheck)
     }
 
     addSnake(){
-        this.#game.innerHTML = this.#snake.getSnake()
+        this.#game.appendChild(this.#snake.getSnake())
+    }
+
+    checkSnake(){
+        var position = this.#snake.getHeadPosition()
+        if(position.x < 0 || position.x >this.#xCount || position.y < 0 || position.y > this.#yCount){
+            this.gameOver()
+        }
     }
 
     addFood(){
