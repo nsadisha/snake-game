@@ -14,11 +14,17 @@ export default class SnakeGame {
     #moveSnake
     #gameCheck
 
+    //callbacks
+    onGameOver
+    onStart
+    onRestart
+
     constructor(){
         this.listenForInputs()
     }
     
     start(){
+        this.#marks = 0
         this.addSnake()
         this.addFood()
 
@@ -27,9 +33,14 @@ export default class SnakeGame {
         this.#gameCheck = setInterval(this.checkSnake.bind(this), this.#speed)
     }
 
+    restart(){
+        this.#game.innerHTML = ""
+        this.start()
+    }
+
     gameOver(){
+        this.onGameOver()
         this.#snake.hit()
-        // alert('Game Over');
         clearInterval(this.#moveSnake)
         clearInterval(this.#gameCheck)
     }
@@ -42,7 +53,7 @@ export default class SnakeGame {
     checkSnake(){
         var position = this.#snake.getHeadPosition()
         console.log(this.isSnakeHitItself(position));
-        
+
         if(this.isSnakeHitTheWall(position)){
             this.gameOver()
         }else if(this.isSnakeHitItself(position)){
