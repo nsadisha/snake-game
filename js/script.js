@@ -2,17 +2,39 @@ import SnakeGame from "./SnakeGame.js"
 
 const game = new SnakeGame()
 
-const startBtn = document.getElementById('start-btn')
 const startScreen = document.querySelector('.start-screen')
+const restartScreen = document.querySelector('.restart-screen')
+const startBtn = document.getElementById('start-btn')
+const resetBtn = document.getElementById('reset-btn')
+const restartBtn = document.getElementById('restart-btn')
 
 startBtn.addEventListener('click', e => {
     startScreen.classList.add('scale-down')
     game.start()
 })
 
+resetBtn.addEventListener('click', e => {
+    if(confirm("Do you want to reset your highest score?")){
+        localStorage.setItem('max-score', 0)
+    }
+})
+
+restartBtn.addEventListener('click', e => {
+    game.restart()
+})
+
 game.onGameOver = function(){
-    console.log('game over');
+    showRestartScreen()
 }
 game.onRestart = function(){
-    console.log("restarted");
+    hideRestartScreen()
+}
+
+function showRestartScreen(){
+    restartScreen.classList.add('show')
+}
+function hideRestartScreen(){
+    restartScreen.classList.remove('show')
+    restartScreen.classList.remove('restart-screen')
+    restartScreen.classList.add('restart-screen')
 }
