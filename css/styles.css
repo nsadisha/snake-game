@@ -171,6 +171,18 @@ body {
         transform: scale(1);
     }
 }
+.start-screen.move-up{
+    animation: exit-start-screen 0.3s ease-in-out;
+}
+@keyframes exit-start-screen {
+    from{
+        transform: scale(1);
+    }
+    to{
+        transform: scale(0);
+        display: none;
+    }
+}
 .start-screen button{
     color: white;
     background: none;
