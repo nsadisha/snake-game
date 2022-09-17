@@ -60,6 +60,8 @@ body {
     width: 100%;
     aspect-ratio: 1 / 1;
     background-color: black;
+    box-sizing: border-box;
+    border: solid 0.5px aliceblue;
 }
 .move {
     grid-column: var(--cell-x);
