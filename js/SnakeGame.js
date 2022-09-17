@@ -36,6 +36,7 @@ export default class SnakeGame {
     restart(){
         this.#game.innerHTML = ""
         this.start()
+        this.onRestart()
     }
 
     gameOver(){
