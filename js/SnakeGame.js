@@ -6,7 +6,7 @@ export default class SnakeGame {
     #game = document.getElementById('snake-game')
     #xCount = 100
     #yCount = 60
-    #speed = 150
+    #speed = 200
     #snake
     #currentFood
 
