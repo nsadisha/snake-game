@@ -88,3 +88,63 @@ body {
     grid-column: var(--cell-x);
     grid-row: var(--cell-y);
 }
+
+/* loading screen */
+.loading-screen {
+    position: absolute;
+    background-color: black;
+    width: 100vw;
+    height: 100vh;
+    top: -100%;
+    left: 0;
+    z-index: 10;
+    text-align: center;
+    overflow: hidden;
+    animation: exit 7s ease-in-out;
+}
+
+.loading-screen h1{
+    color: white;
+    margin-top: 3rem;
+    font-size: 4rem;
+}
+@keyframes exit {
+    0%{
+        top: 0;
+    }
+    66.667%{
+        top: 0;
+    }
+    100%{
+        top: -100%;
+        display: none;
+    }
+}
+.loading-screen .snake{
+    position: absolute;
+    background-color: black;
+    display: flex;
+    height: 3rem;
+    margin-top: 10rem;
+    animation: moving-animation 5s linear;
+    left: 100%;
+}
+.loading-screen .snake.reversed{
+    margin-top: 17rem;
+    animation: moving-animation 5s linear reverse;
+}
+@keyframes moving-animation {
+    from {
+        left: -18rem;
+    }
+    to{
+        left: 100%;
+    }
+}
+.loading-screen .snake .cell {
+    width: 3rem;
+    height: 3rem;
+    background-color: white;
+    box-sizing: border-box;
+    border: solid 2px black;
+}

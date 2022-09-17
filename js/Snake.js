@@ -15,6 +15,10 @@ export default class Snake {
         return this.#snakeHead.getCell()
     }
 
+    getHead(){
+        return this.#snakeHead
+    }
+
     move(){
         var currentX = this.#snakeHead.cellX
         var currentY = this.#snakeHead.cellY
@@ -28,6 +32,22 @@ export default class Snake {
         }else if(this.direction == 'right'){
             this.#snakeHead.updatePosition(currentX+1, currentY)
         }
+    }
+
+    hit(){
+        this.#snakeHead.getCell().classList.add('hit')
+    }
+
+    hitItself(cell, headPosition){
+        if(cell == null) return false
+        if(cell.cellX == headPosition.x && cell.cellY == headPosition.y){
+            alert("hit")
+            return true
+        }
+        if(cell.next != null){
+            this.hitItself(cell.next, headPosition)
+        }
+        return false
     }
 
     getHeadPosition(){

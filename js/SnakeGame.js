@@ -6,7 +6,7 @@ export default class SnakeGame {
     #game = document.getElementById('snake-game')
     #xCount = 100
     #yCount = 60
-    #speed = 200
+    #speed = 60
     #snake
     #currentFood
 
@@ -28,7 +28,8 @@ export default class SnakeGame {
     }
 
     gameOver(){
-        console.log('Game Over');
+        this.#snake.hit()
+        // alert('Game Over');
         clearInterval(this.#moveSnake)
         clearInterval(this.#gameCheck)
     }
@@ -40,11 +41,22 @@ export default class SnakeGame {
 
     checkSnake(){
         var position = this.#snake.getHeadPosition()
-        if(position.x <= 0 || position.x >= this.#xCount || position.y <= 0 || position.y >= this.#yCount){
+        console.log(this.isSnakeHitItself(position));
+        
+        if(this.isSnakeHitTheWall(position)){
+            this.gameOver()
+        }else if(this.isSnakeHitItself(position)){
             this.gameOver()
         }
 
         this.checkFoodStatus()
+    }
+
+    isSnakeHitTheWall(position){
+        return position.x <= 0 || position.x >= this.#xCount || position.y <= 0 || position.y >= this.#yCount
+    }
+    isSnakeHitItself(position){
+        return this.#snake.hitItself(this.#snake.getHead().next, position)
     }
 
     checkFoodStatus(){
