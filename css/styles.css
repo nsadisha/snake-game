@@ -171,7 +171,7 @@ body {
         transform: scale(1);
     }
 }
-.start-screen.move-up{
+.start-screen.scale-down{
     animation: exit-start-screen 0.3s ease-in-out;
 }
 @keyframes exit-start-screen {
