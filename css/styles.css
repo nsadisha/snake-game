@@ -160,6 +160,8 @@ body {
     width: 100vw;
     height: 100vh;
     animation: appear-start-screen 0.5s ease-in-out 6s;
+    animation-fill-mode: forwards;
+    transform: scale(0);
 }
 @keyframes appear-start-screen {
     from{
