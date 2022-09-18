@@ -11,6 +11,9 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     display: grid;
     justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .main-caption {
@@ -156,7 +159,8 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 9;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(20px);
     width: 100vw;
     height: 100vh;
     animation: appear-start-screen 0.5s ease-in-out 6s;
@@ -211,6 +215,7 @@ body {
 .restart-screen {
     position: absolute;
     /* display: none; */
+    backdrop-filter: blur(20px);
     flex-direction: column;
     text-align: center;
     justify-content: center;
@@ -218,7 +223,7 @@ body {
     top: 0;
     left: 0;
     z-index: 8;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.85);
     width: 100vw;
     height: 100vh;
     animation: hide-restart-screen 0.5s ease-in-out;
@@ -235,7 +240,7 @@ body {
         display: none;
     }
     to{
-        display: flex;
+        display: block;
         opacity: 1;
         transform: scale(1);
     }
@@ -248,8 +253,8 @@ body {
     }
     to{
         display: none;
-        transform: scale(4);
         opacity: 0;
+        transform: scale(4);
     }
 }
 .restart-screen h1{
