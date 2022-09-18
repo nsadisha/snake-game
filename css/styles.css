@@ -230,7 +230,8 @@ body {
     animation-fill-mode: forwards;
 }
 .restart-screen.show{
-    animation: show-restart-screen 0.5s ease-in-out;
+    opacity: 0;
+    animation: show-restart-screen 0.5s ease-in-out 1s forwards;
     animation-fill-mode: forwards;
 }
 @keyframes show-restart-screen {
