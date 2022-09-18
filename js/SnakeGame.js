@@ -117,4 +117,8 @@ export default class SnakeGame {
             }
         })
     }
+
+    getMarks(){
+        return this.#marks
+    }
 }
