@@ -20,6 +20,7 @@ startBtn.addEventListener('click', e => {
 resetBtn.addEventListener('click', e => {
     if(confirm("Do you want to reset your highest score?")){
         localStorage.setItem('max-score', 0)
+        updateHighestScore()
     }
 })
 
@@ -28,8 +29,8 @@ restartBtn.addEventListener('click', e => {
 })
 
 game.onGameOver = function(){
-    setScore()
-    setHighestScore()
+    updateScore()
+    updateHighestScore()
     showRestartScreen()
 }
 game.onRestart = function(){
@@ -44,12 +45,15 @@ function hideRestartScreen(){
     restartScreen.classList.remove('restart-screen')
     restartScreen.classList.add('restart-screen')
 }
-function setScore(){
+function updateScore(){
     score.innerHTML = game.getMarks()
 }
 function setHighestScore(){
     if(localStorage.getItem('max-score', 0) < game.getMarks()){
         localStorage.setItem('max-score', game.getMarks())
     }
+    updateHighestScore()
+}
+function updateHighestScore(){
     highestScore.innerHTML = localStorage.getItem('max-score', 0)
 }
