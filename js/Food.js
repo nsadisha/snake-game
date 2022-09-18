@@ -14,9 +14,11 @@ export default class Food {
     getFood(){
         return this.#food
     }
+
     remove(){
         this.#food.remove()
     }
+    
     getPosition(){
         return{
             x: this._x,

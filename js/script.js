@@ -35,24 +35,29 @@ game.onGameOver = function(){
     setHighestScore()()
     showRestartScreen()
 }
+
 //on game restart callback
 game.onRestart = function(){
     hideRestartScreen()
 }
+
 //show restart screen
 function showRestartScreen(){
     restartScreen.classList.add('show')
 }
+
 //hide restart screen
 function hideRestartScreen(){
     restartScreen.classList.remove('show')
     restartScreen.classList.remove('restart-screen')
     restartScreen.classList.add('restart-screen')
 }
+
 //display scores
 function updateScore(){
     score.innerHTML = game.getMarks()
 }
+
 //set highest score in local storage
 function setHighestScore(){
     if(localStorage.getItem('max-score', 0) < game.getMarks()){
@@ -60,6 +65,7 @@ function setHighestScore(){
     }
     updateHighestScore()
 }
+
 //display highest scores
 function updateHighestScore(){
     highestScore.innerHTML = localStorage.getItem('max-score', 0)

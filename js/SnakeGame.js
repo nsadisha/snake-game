@@ -67,6 +67,7 @@ export default class SnakeGame {
     isSnakeHitTheWall(position){
         return position.x <= 0 || position.x >= this.#xCount || position.y <= 0 || position.y >= this.#yCount
     }
+
     isSnakeHitItself(position){
         return this.#snake.hitItself(this.#snake.getHead().next, position)
     }
@@ -100,6 +101,7 @@ export default class SnakeGame {
             y: Math.floor(Math.random() * this.#yCount)
         }
     }
+    
     listenForInputs(){
         window.addEventListener('keyup', e => {
             if(e.key == 'ArrowUp'){
