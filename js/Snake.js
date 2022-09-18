@@ -39,13 +39,14 @@ export default class Snake {
     }
 
     hitItself(cell, headPosition){
-        if(cell == null) return false
+        if(cell == null){
+            return false
+        }
         if(cell.cellX == headPosition.x && cell.cellY == headPosition.y){
-            alert("hit")
             return true
         }
         if(cell.next != null){
-            this.hitItself(cell.next, headPosition)
+            return this.hitItself(cell.next, headPosition)
         }
         return false
     }

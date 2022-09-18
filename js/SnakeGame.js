@@ -53,7 +53,6 @@ export default class SnakeGame {
 
     checkSnake(){
         var position = this.#snake.getHeadPosition()
-        console.log(this.isSnakeHitItself(position));
 
         if(this.isSnakeHitTheWall(position)){
             this.gameOver()
@@ -78,7 +77,6 @@ export default class SnakeGame {
 
         if(snakePosition.x == foodPosition.x && snakePosition.y == foodPosition.y){
             this.#marks += 1
-            console.log(this.#marks);
             this.#game.appendChild(this.#snake.getNewSnakeCell())
             this.removeCurrentFoodAndAddNew()
         }
