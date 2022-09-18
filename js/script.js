@@ -32,7 +32,7 @@ restartBtn.addEventListener('click', e => {
 // on game over callback
 game.onGameOver = function(){
     updateScore()
-    setHighestScore()()
+    setHighestScore()
     showRestartScreen()
 }
 
