@@ -60,7 +60,12 @@ function updateScore(){
 
 //set highest score in local storage
 function setHighestScore(){
-    if(localStorage.getItem('max-score', 0) < game.getMarks()){
+    //set highest to 0 for the first time
+    if(localStorage.getItem('max-score') == undefined){
+        localStorage.setItem('max-score', 0)
+    }
+
+    if(localStorage.getItem('max-score') < game.getMarks()){
         localStorage.setItem('max-score', game.getMarks())
     }
     updateHighestScore()
@@ -68,5 +73,5 @@ function setHighestScore(){
 
 //display highest scores
 function updateHighestScore(){
-    highestScore.innerHTML = localStorage.getItem('max-score', 0)
+    highestScore.innerHTML = localStorage.getItem('max-score')
 }
