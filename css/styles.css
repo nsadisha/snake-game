@@ -288,3 +288,40 @@ body {
     border-radius: 5px;
     cursor: pointer;
 }
+
+.mobile-only-screen{
+    display: none;
+}
+
+/* responcive css */
+@media only screen and (max-width: 450px){
+    .main-caption, .game, .footer, .loading-screen, .start-screen, .restart-screen {
+        display: none;
+    }
+    .mobile-only-screen{
+        position: relative;
+        display: block;
+        width: 100vw;
+        height: 100vh;
+        background-color: black;
+        display: grid;
+        align-content: center;
+        text-align: center;
+    }
+    .mobile-only-screen h1{
+        position: absolute;
+        top: 3rem;
+        left: 50%;
+        transform: translateX(-50%);
+        color: white;
+        margin-bottom: 5rem;
+    }
+    .mobile-only-screen h2{
+        margin: 0 1rem;
+        color: white;
+    }
+    .mobile-only-screen p{
+        margin: 1rem;
+        color: gray;
+    }
+}
