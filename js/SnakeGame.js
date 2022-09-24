@@ -64,7 +64,7 @@ export default class SnakeGame {
     }
 
     isSnakeHitTheWall(position){
-        return position.x <= 0 || position.x >= this.#xCount || position.y <= 0 || position.y >= this.#yCount
+        return position.x <= 1 || position.x >= this.#xCount || position.y <= 1 || position.y >= this.#yCount
     }
 
     isSnakeHitItself(position){
