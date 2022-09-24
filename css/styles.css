@@ -310,6 +310,7 @@ body {
     }
     .mobile-only-screen h1{
         position: absolute;
+        width: 100%;
         top: 3rem;
         left: 50%;
         transform: translateX(-50%);
